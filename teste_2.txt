@@ -1,0 +1,14 @@
+e1 e2 e3 e4 e5 e6
+a b
+e2 e6
+e6 e3
+e4 e6
+e4 e4
+e6 e6
+e6 e6
+e1
+e4
+3
+abaaa
+abbababa
+abaabaaba
