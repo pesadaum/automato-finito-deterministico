@@ -1,0 +1,29 @@
+
+----- AFD './afd2b.txt'-----
+Estados: {0, 1, 2, 3, x, } --- Quantidade de estados: 5
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: 0
+Estados finais: {2, } --- Tamanho do conjunto de estados finais: 1
+
+Mapa de transições:
+x: [ x, x, x,  ]
+2: [ 3, 1, 0,  ]
+3: [ x, 1, 0,  ]
+1: [ 3, 1, 2,  ]
+0: [ 3, 1, 0,  ]
+
+--------------------
+Numero de testes: 5
+Palavras: 
+bc
+bccc
+aacc
+bcbc
+abc
+--------------------
+
+Teste para 'bc': 0->1->2-> * Aceito *
+Teste para 'bccc': 0->1->2->0->0-> ** Não aceito **
+Teste para 'aacc': 0->3->x->x->x-> ** Não aceito **
+Teste para 'bcbc': 0->1->2->1->2-> * Aceito *
+Teste para 'abc': 0->3->1->2-> * Aceito *

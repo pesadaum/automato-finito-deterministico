@@ -1,0 +1,23 @@
+e0 e1 e2 e3 e4 e5 e6 e7 a1 a2 x1
+a b c
+e1 e2 x1
+x1 e3 x1
+x1 x1 e3
+e4 e7 e6
+x1 e5 x1
+e4 e7 e6
+x1 x1 a1
+a2 x1 x1
+x1 e7 e6
+x1 e7 e6
+x1 x1 x1
+e0
+a1 a2
+7
+abcc
+abba
+ababababcc
+abcccc
+abccc
+bcbaccba
+bcbaccbaaabcabc

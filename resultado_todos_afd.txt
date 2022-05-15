@@ -1,0 +1,157 @@
+
+----- AFD './afd1a.txt'-----
+Estados: {e0, e1, e2, e3, e4, e5, e6, e7, a1, a2, x1, } --- Quantidade de estados: 11
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: e0
+Estados finais: {a1, a2, } --- Tamanho do conjunto de estados finais: 2
+
+Mapa de transições:
+e7: [ a2, x1, x1,  ]
+e6: [ x1, x1, a1,  ]
+a1: [ x1, e7, e6,  ]
+e5: [ e4, e7, e6,  ]
+e4: [ x1, e5, x1,  ]
+e3: [ e4, e7, e6,  ]
+e2: [ x1, x1, e3,  ]
+a2: [ x1, e7, e6,  ]
+e1: [ x1, e3, x1,  ]
+x1: [ x1, x1, x1,  ]
+e0: [ e1, e2, x1,  ]
+
+--------------------
+Numero de testes: 7
+Palavras: 
+abcc
+abba
+ababababcc
+abcccc
+abccc
+bcbaccba
+bcbaccbaaabcabc
+--------------------
+
+Teste para 'abcc': e0->e1->e3->e6->a1-> * Aceito *
+Teste para 'abba': e0->e1->e3->e7->a2-> * Aceito *
+Teste para 'ababababcc': e0->e1->e3->e4->e5->e4->e5->e4->e5->e6->a1-> * Aceito *
+Teste para 'abcccc': e0->e1->e3->e6->a1->e6->a1-> * Aceito *
+Teste para 'abccc': e0->e1->e3->e6->a1->e6-> ** Não aceito **
+Teste para 'bcbaccba': e0->e2->e3->e7->a2->e6->a1->e7->a2-> * Aceito *
+Teste para 'bcbaccbaaabcabc': e0->e2->e3->e7->a2->e6->a1->e7->a2->x1->x1->x1->x1->x1->x1->x1-> ** Não aceito **
+
+----- AFD './afd1b.txt'-----
+Estados: {1, 2, 3, 4, } --- Quantidade de estados: 4
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: 1
+Estados finais: {4, } --- Tamanho do conjunto de estados finais: 1
+
+Mapa de transições:
+4: [ 2, 2, 3,  ]
+2: [ 2, 2, 3,  ]
+3: [ 4, 2, 1,  ]
+1: [ 2, 2, 1,  ]
+
+--------------------
+Numero de testes: 5
+Palavras: 
+abca
+aaabca
+ccabca
+acac
+acaca
+--------------------
+
+Teste para 'abca': 1->2->2->3->4-> * Aceito *
+Teste para 'aaabca': 1->2->2->2->2->3->4-> * Aceito *
+Teste para 'ccabca': 1->1->1->2->2->3->4-> * Aceito *
+Teste para 'acac': 1->2->3->4->3-> ** Não aceito **
+Teste para 'acaca': 1->2->3->4->3->4-> * Aceito *
+
+----- AFD './afd1c.txt'-----
+Estados: {0, 1, 2, 3, x, } --- Quantidade de estados: 5
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: 0
+Estados finais: {2, } --- Tamanho do conjunto de estados finais: 1
+
+Mapa de transições:
+x: [ x, x, x,  ]
+2: [ 3, 0, 2,  ]
+3: [ 3, 0, x,  ]
+1: [ 3, 0, 2,  ]
+0: [ 3, 0, 1,  ]
+
+--------------------
+Numero de testes: 5
+Palavras: 
+cc
+ccc
+acc
+bcbcc
+ccca
+--------------------
+
+Teste para 'cc': 0->1->2-> * Aceito *
+Teste para 'ccc': 0->1->2->2-> * Aceito *
+Teste para 'acc': 0->3->x->x-> ** Não aceito **
+Teste para 'bcbcc': 0->0->1->0->1->2-> * Aceito *
+Teste para 'ccca': 0->1->2->2->3-> ** Não aceito **
+
+----- AFD './afd2a.txt'-----
+Estados: {0, 1, 2, 3, 4, 5, } --- Quantidade de estados: 6
+Alfabeto: {a, b, } --- Tamanho do alfabeto: 2
+Estado inicial: 0
+Estados finais: {5, } --- Tamanho do conjunto de estados finais: 1
+
+Mapa de transições:
+4: [ 3, 5,  ]
+2: [ 3, 0,  ]
+5: [ 5, 5,  ]
+3: [ 1, 4,  ]
+1: [ 1, 2,  ]
+0: [ 1, 0,  ]
+
+--------------------
+Numero de testes: 6
+Palavras: 
+ababb
+ababbaababa
+bbbaba
+abababababb
+abaaaa
+bbbababbabab
+--------------------
+
+Teste para 'ababb': 0->1->2->3->4->5-> * Aceito *
+Teste para 'ababbaababa': 0->1->2->3->4->5->5->5->5->5->5->5-> * Aceito *
+Teste para 'bbbaba': 0->0->0->0->1->2->3-> ** Não aceito **
+Teste para 'abababababb': 0->1->2->3->4->3->4->3->4->3->4->5-> * Aceito *
+Teste para 'abaaaa': 0->1->2->3->1->1->1-> ** Não aceito **
+Teste para 'bbbababbabab': 0->0->0->0->1->2->3->4->5->5->5->5->5-> * Aceito *
+
+----- AFD './afd2b.txt'-----
+Estados: {0, 1, 2, 3, x, } --- Quantidade de estados: 5
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: 0
+Estados finais: {2, } --- Tamanho do conjunto de estados finais: 1
+
+Mapa de transições:
+x: [ x, x, x,  ]
+2: [ 3, 1, 0,  ]
+3: [ x, 1, 0,  ]
+1: [ 3, 1, 2,  ]
+0: [ 3, 1, 0,  ]
+
+--------------------
+Numero de testes: 5
+Palavras: 
+bc
+bccc
+aacc
+bcbc
+abc
+--------------------
+
+Teste para 'bc': 0->1->2-> * Aceito *
+Teste para 'bccc': 0->1->2->0->0-> ** Não aceito **
+Teste para 'aacc': 0->3->x->x->x-> ** Não aceito **
+Teste para 'bcbc': 0->1->2->1->2-> * Aceito *
+Teste para 'abc': 0->3->1->2-> * Aceito *
