@@ -1,0 +1,39 @@
+
+----- AFD './afd1a.txt'-----
+Estados: {e0, e1, e2, e3, e4, e5, e6, e7, a1, a2, x1, } --- Quantidade de estados: 11
+Alfabeto: {a, b, c, } --- Tamanho do alfabeto: 3
+Estado inicial: e0
+Estados finais: {a1, a2, } --- Tamanho do conjunto de estados finais: 2
+
+Mapa de transições:
+e7: [ a2, x1, x1,  ]
+e6: [ x1, x1, a1,  ]
+a1: [ x1, e7, e6,  ]
+e5: [ e4, e7, e6,  ]
+e4: [ x1, e5, x1,  ]
+e3: [ e4, e7, e6,  ]
+e2: [ x1, x1, e3,  ]
+a2: [ x1, e7, e6,  ]
+e1: [ x1, e3, x1,  ]
+x1: [ x1, x1, x1,  ]
+e0: [ e1, e2, x1,  ]
+
+--------------------
+Numero de testes: 7
+Palavras: 
+abcc
+abba
+ababababcc
+abcccc
+abccc
+bcbaccba
+bcbaccbaaabcabc
+--------------------
+
+Teste para 'abcc': e0->e1->e3->e6->a1-> * Aceito *
+Teste para 'abba': e0->e1->e3->e7->a2-> * Aceito *
+Teste para 'ababababcc': e0->e1->e3->e4->e5->e4->e5->e4->e5->e6->a1-> * Aceito *
+Teste para 'abcccc': e0->e1->e3->e6->a1->e6->a1-> * Aceito *
+Teste para 'abccc': e0->e1->e3->e6->a1->e6-> ** Não aceito **
+Teste para 'bcbaccba': e0->e2->e3->e7->a2->e6->a1->e7->a2-> * Aceito *
+Teste para 'bcbaccbaaabcabc': e0->e2->e3->e7->a2->e6->a1->e7->a2->x1->x1->x1->x1->x1->x1->x1-> ** Não aceito **

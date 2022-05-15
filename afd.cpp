@@ -1,8 +1,7 @@
 #include"afd.hpp"
 
-#include<bits/stdc++.h>
-#include<algorithm>
 #include<iostream>
+#include<sstream>
 #include<fstream>
 #include<string>
 #include<unordered_map>
@@ -34,10 +33,6 @@ vector<string> separa_espacos(string s) {
 }
 
 
-/**
- * @brief lê a o arquivo com a bagaceira e retorna num vetor de strings
- * @return vector<string>: Um vetor de strings com as linhas do arquivo
-*/
 AFD::AFD(string fname, bool mostra_atributos) {
   ifstream arq;
   string buffer;
@@ -114,8 +109,12 @@ AFD::AFD(string fname, bool mostra_atributos) {
       cout << " ]" << endl;
     }
 
+    cout << endl;
+    cout << "--------------------" << endl;
     cout << "Numero de testes: " << this->num_testes << endl;
+    cout << "Palavras: " << endl;
     for (const string i : this->palavras_teste) cout << i << endl;
+    cout << "--------------------" << endl;
     cout << endl;
   }
 }
@@ -132,10 +131,9 @@ string AFD::delta(string e_atual, string simbolo) {
 
 bool AFD::testa_palavra(string palavra) {
   string estado_atual = this->estado_inicial;
-  stringstream ss;
 
   for (int i = 0; i < palavra.size(); i++) {
-    string simbolo = string(1, palavra[i]); // pq diabos o char não é assignible to string ?????
+    string simbolo = string(1, palavra[i]); // pq o char não é assignible to string ?????
     estado_atual = delta(estado_atual, simbolo);
   }
 
@@ -148,12 +146,11 @@ bool AFD::testa_palavra(string palavra) {
 
 bool AFD::testa_palavra(string palavra, bool verboso) {
   string estado_atual = this->estado_inicial;
-  stringstream ss;
 
   if (verboso) cout << estado_atual << "->";
 
   for (int i = 0; i < palavra.size(); i++) {
-    string simbolo = string(1, palavra[i]); // pq diabos o char não é assignible to string ?????
+    string simbolo = string(1, palavra[i]); // pq o char não é assignible to string ?????
     estado_atual = delta(estado_atual, simbolo);
     if (verboso) cout << estado_atual << "->";
   }
@@ -166,6 +163,12 @@ bool AFD::testa_palavra(string palavra, bool verboso) {
   return false;
 }
 
-void AFD::testa_arquivo_inteiro(bool verboso) {
-  for (const string palavra : this->palavras_teste) testa_palavra(palavra, verboso);
+void AFD::testa_arquivo_inteiro(bool verboso = true) {
+  for (const string palavra : this->palavras_teste) {
+    cout << "Teste para '" << palavra << "': ";
+    testa_palavra(palavra, verboso)
+      ? cout << " * Aceito *"
+      : cout << " ** Não aceito **";
+    cout << endl;
+  }
 }
