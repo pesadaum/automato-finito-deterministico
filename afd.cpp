@@ -25,6 +25,7 @@ vector<string> separa_espacos(string s) {
   stringstream ss(s);
   string token;
   vector<string> tokens;
+
   while (ss >> token) {
     tokens.push_back(token);
   }
@@ -71,8 +72,23 @@ AFD::AFD(string fname, bool mostra_atributos) {
   */
   this->estados_finais = separa_espacos(conteudo[this->estados.size() + 3]);
 
+  /**
+   * Número de testes especificados uma linha após os estados finais
+  */
+  this->num_testes = stoi(conteudo[this->estados.size() + 4]);
+
+  /**
+   * Constrói o vetor de palavras uma linha após a o número de testes
+  */
+  for (int i = 0; i < this->num_testes; i++) {
+    this->palavras_teste.push_back(conteudo[(this->estados.size() + 5) + i]);
+  }
+
 
   if (mostra_atributos) {
+    cout << endl;
+
+    cout << "----- AFD '" << fname << "'-----" << endl;
     cout << "Estados: {";
     for (const string i : this->estados) cout << i << ", ";
     cout << "} --- Quantidade de estados: " << this->estados.size();
@@ -97,14 +113,14 @@ AFD::AFD(string fname, bool mostra_atributos) {
       for (auto t : x.second) cout << t << ", ";
       cout << " ]" << endl;
     }
-  }
 
-  cout << endl;
+    cout << "Numero de testes: " << this->num_testes << endl;
+    for (const string i : this->palavras_teste) cout << i << endl;
+    cout << endl;
+  }
 }
 
 string AFD::delta(string e_atual, string simbolo) {
-
-
   int indice = indice_no_alfabeto(this->alfabeto, simbolo);
   if (indice == -1) {
     cout << "Aviso: o item '" << simbolo << "' não está no alfabeto, revise a entrada de dados";
@@ -134,6 +150,8 @@ bool AFD::testa_palavra(string palavra, bool verboso) {
   string estado_atual = this->estado_inicial;
   stringstream ss;
 
+  if (verboso) cout << estado_atual << "->";
+
   for (int i = 0; i < palavra.size(); i++) {
     string simbolo = string(1, palavra[i]); // pq diabos o char não é assignible to string ?????
     estado_atual = delta(estado_atual, simbolo);
@@ -146,4 +164,8 @@ bool AFD::testa_palavra(string palavra, bool verboso) {
   }
 
   return false;
+}
+
+void AFD::testa_arquivo_inteiro(bool verboso) {
+  for (const string palavra : this->palavras_teste) testa_palavra(palavra, verboso);
 }
